@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 /* 定义公共样式。 好像分成不同的组件也不需要了， */
+:root {
+  font-size: 12px;
+  line-height: 18px;
+}
