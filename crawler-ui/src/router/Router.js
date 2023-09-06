@@ -26,6 +26,14 @@ const routes = [
           import(
             /* webpackChunkName: "StatisticsPage" */ '../views/Home/StatisticsPage/statisticsPage.vue'
           )
+      },
+      {
+        path: '/home/nodeList',
+        name: 'NodeList',
+        component: () =>
+          import(
+            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Node/NodeList.vue'
+          )
       }
     ]
   },

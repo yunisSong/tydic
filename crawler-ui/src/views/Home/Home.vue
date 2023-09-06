@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home flex overflow-hidden w-full">
     <!-- left -->
     <Menu
       class="menu"
@@ -7,7 +7,7 @@
       :showTitle="showMenu"
     />
     <!-- right -->
-    <Main class="main" />
+    <Main class="main flex-1" />
     <!-- <router-view class="w-10/12 h-11 bg-slate-800"></router-view> -->
   </div>
 </template>

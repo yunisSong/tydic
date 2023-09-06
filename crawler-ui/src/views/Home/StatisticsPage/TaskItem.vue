@@ -1,16 +1,16 @@
 <template>
-  <div class="task-item flex text-white rounded-sm">
+  <div class="flex justify-center items-center text-white p-4 h-[80px]">
     <!-- icon -->
-    <div class="flex items-center justify-center text-5xl w-[58px]">
-      <el-icon class="leading-tight">
-        <component :is="task.icon"></component>
-      </el-icon>
-    </div>
-    <!-- info -->
-    <div class="flex-1 pl-3 bg-white bg-opacity-30 text-[14px]">
-      <div class="flex h-full flex-col justify-center items-start">
-        <span>{{ task.title }}</span>
-        <span>{{ task.subTitle }}</span>
+    <div class="task-item flex-1 flex rounded-sm">
+      <div class="flex items-center justify-center w-[78px]">
+        <SvgIconVue :icon="task.svg" />
+      </div>
+      <!-- info -->
+      <div class="flex-1 pl-3 bg-white bg-opacity-30 text-[14px] p-5">
+        <div class="flex gap-2 h-full flex-col justify-center items-start">
+          <span>{{ task.title }}</span>
+          <span>{{ task.subTitle }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -18,6 +18,9 @@
 
 <script setup>
 import { ref } from 'vue'
+
+import SvgIconVue from '../../../components/svg-icon/SvgIcon.vue'
+
 const props = defineProps({
   task: {
     icon: String,
