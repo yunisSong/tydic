@@ -9,10 +9,10 @@
     <div class="echarts w-full h-[400px] mt-3 p-4" ref="lineRef"></div>
     <!-- 统计 饼图 -->
     <!-- <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3"> -->
-    <div class="flex flex-wrap">
-      <div ref="pieRef1" class="h-[450px] flex-1"></div>
-      <div ref="pieRef2" class="h-[450px] flex-1"></div>
-      <div ref="pieRef3" class="h-[450px] flex-1"></div>
+    <div class="flex flex-wrap p-4">
+      <div ref="pieRef1" class="h-[450px] min-w-[250px] flex-1"></div>
+      <div ref="pieRef2" class="h-[450px] min-w-[250px] flex-1"></div>
+      <div ref="pieRef3" class="h-[450px] min-w-[250px] flex-1"></div>
     </div>
   </div>
 </template>

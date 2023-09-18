@@ -28,6 +28,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const currentPath = router.currentRoute.value.fullPath
+
 const props = defineProps({
   showTitle: true
 })
@@ -35,29 +39,37 @@ const menuItems = [
   {
     icon: 'Menu',
     title: '主页',
-    url: 'Menu'
+    url: '/home/statisticsPage'
   },
   {
     icon: 'Link',
     title: '节点',
-    url: 'Link'
+    url: '/home/nodeList'
   },
   {
     icon: 'Share',
-    title: '项目',
-    url: 'Share'
+    title: '定时任务',
+    url: '/home/scheduled'
   },
   {
     icon: 'Share',
     title: '爬虫',
-    url: 'Share'
+    url: '/home/crawler'
   }
 ]
 const selectItem = ref(menuItems[0])
 
+const targetItems = menuItems.filter((item) => {
+  return item.url == currentPath
+})
+if (targetItems.length > 0) {
+  selectItem.value = targetItems[0]
+}
+
 const clickMenu = (item) => {
   console.log('item: ', item)
   selectItem.value = item
+  router.push(item.url)
 }
 </script>
 

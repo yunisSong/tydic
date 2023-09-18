@@ -1,5 +1,5 @@
 <template>
-  <div class="hy-table">
+  <div>
     <el-table
       :data="listData"
       stripe
@@ -68,13 +68,11 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref, defineProps, defineEmits } from 'vue'
-
 const props = defineProps({
   // 标题
   title: {
     type: String,
-    default: ''
+    default: 'FANz*930913'
   },
 
   // 是否展示 序号
@@ -138,8 +136,6 @@ function sssss({ row, column, rowIndex, columnIndex }) {
   }
 }
 const indexMethod = (index) => {
-
-
   return (props.page.currentPage - 1) * props.page.pageSize + index + 1
 }
 

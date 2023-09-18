@@ -3,17 +3,24 @@
 import { ref, watch } from 'vue'
 
 // 列表
+const requestTableData = (model, page) => {
+  // 获取pages
+  // 搜索表单参数。
+  // modelValue.keywords = ''
+  return {}
+}
 
 export const tableListConfig = () => {
-  let modelValue = ref({})
   // 处理表格数据
+  const { modelValue, query, config, items } = formConfig()
   const tableHandleModel = tablePageConfig(modelValue)
-
   return {
     modelValue,
     ...tableHandleModel,
     ...tableDataConfig(),
-    ...formConfig()
+    modelValue,
+    config,
+    items
   }
 }
 // table data
@@ -29,8 +36,9 @@ const tablePageConfig = (modelValue) => {
   const updatePage = (p) => {
     page.value = p
   }
+
   watch(page, (page, prev) => {
-    // requestTableData()
+    requestTableData(modelValue.value, page.value)
   })
 
   const tableList = ref([])
@@ -38,6 +46,7 @@ const tablePageConfig = (modelValue) => {
   return {
     page,
     totalCount,
+    requestTableData,
     updatePage,
     tableList
   }
@@ -98,6 +107,8 @@ const tableDataConfig = () => {
 }
 
 const formConfig = () => {
+  let modelValue = ref({})
+
   const config = {
     labelPosition: 'right',
     // labelWidth: '100px',
@@ -140,8 +151,11 @@ const formConfig = () => {
       }
     }
   ]
-  const query = () => {}
+  const query = () => {
+    requestTableData(modelValue.value, page.value)
+  }
   return {
+    modelValue,
     query,
     config,
     items: ref(items)

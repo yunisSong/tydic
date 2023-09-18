@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, watch, defineEmits, ref, computed } from 'vue'
+import { watch, ref, computed } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 const props = defineProps({
   // 双向绑定数据

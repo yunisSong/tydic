@@ -34,6 +34,30 @@ const routes = [
           import(
             /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Node/NodeList.vue'
           )
+      },
+      {
+        path: '/home/scheduled',
+        name: 'ScheduledTask',
+        component: () =>
+          import(
+            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/ScheduledTask/Task.vue'
+          )
+      },
+      {
+        path: '/home/crawler',
+        name: 'Crawler',
+        component: () =>
+          import(
+            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Crawler/List.vue'
+          )
+      },
+      {
+        path: '/home/crawlerItem',
+        name: 'CrawlerItem',
+        component: () =>
+          import(
+            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Crawler/Item.vue'
+          )
       }
     ]
   },

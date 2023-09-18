@@ -14,6 +14,7 @@
 
 <script setup>
 import SYTable from '@/components/SYTable'
+
 import { tableListConfig } from './Hooks/SonarTableConfig.js'
 const { page, totalCount, updatePage, tableList, contentTableConfig } =
   tableListConfig()

@@ -1,4 +1,7 @@
 const option = {
+  title: {
+    text: '统计'
+  },
   tooltip: {
     trigger: 'item'
   },
@@ -8,7 +11,7 @@ const option = {
   },
   series: [
     {
-      name: 'Access From',
+      name: '数据汇总',
       type: 'pie',
       radius: ['40%', '70%'],
       avoidLabelOverlap: false,
@@ -32,11 +35,11 @@ const option = {
         show: false
       },
       data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
+        { value: 1048, name: 'Twitter' },
+        { value: 735, name: '微博' },
+        { value: 580, name: '微信' },
+        { value: 484, name: 'YouTube' },
+        { value: 300, name: 'Bilibili' }
       ]
     }
   ]

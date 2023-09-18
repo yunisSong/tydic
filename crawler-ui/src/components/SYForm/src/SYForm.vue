@@ -187,11 +187,10 @@
 1. 定义传入参数类型
 2. 定义
 */
-import { reactive, ref, defineProps, defineEmits } from 'vue'
+import { reactive, ref } from 'vue'
 import { creatFormDate, creatFormRules } from './Rule.js'
 import SYRichVue from './richText/SYRich.vue'
 
-import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const props = defineProps({
@@ -372,8 +371,6 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/variable.scss';
-
 .ssybottom {
   margin-bottom: 0;
   .marginbottom_10 {

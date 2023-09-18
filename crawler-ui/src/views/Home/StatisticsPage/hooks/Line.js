@@ -5,8 +5,9 @@ const option = {
   tooltip: {
     trigger: 'axis'
   },
+
   legend: {
-    data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+    data: ['Twitter', '微博', '微信', 'YouTube', 'Bilibili']
   },
   grid: {
     left: '3%',
@@ -29,31 +30,31 @@ const option = {
   },
   series: [
     {
-      name: 'Email',
+      name: 'Twitter',
       type: 'line',
       stack: 'Total',
       data: [120, 132, 101, 134, 90, 230, 210]
     },
     {
-      name: 'Union Ads',
+      name: '微博',
       type: 'line',
       stack: 'Total',
       data: [220, 182, 191, 234, 290, 330, 310]
     },
     {
-      name: 'Video Ads',
+      name: '微信',
       type: 'line',
       stack: 'Total',
       data: [150, 232, 201, 154, 190, 330, 410]
     },
     {
-      name: 'Direct',
+      name: 'YouTube',
       type: 'line',
       stack: 'Total',
       data: [320, 332, 301, 334, 390, 330, 320]
     },
     {
-      name: 'Search Engine',
+      name: 'Bilibili',
       type: 'line',
       stack: 'Total',
       data: [820, 932, 901, 934, 1290, 1330, 1320]
