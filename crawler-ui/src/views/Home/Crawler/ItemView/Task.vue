@@ -41,4 +41,8 @@ const {
 queryTableData()
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.edit {
+  margin-right: 10px;
+}
+</style>
