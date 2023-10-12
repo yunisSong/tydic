@@ -14,9 +14,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import Menu from './Menu.vue'
-import Main from './Main.vue'
 import eventBus from '../../EventBus'
+import Main from './Main.vue'
+import Menu from './Menu.vue'
 
 const showMenu = ref(true)
 eventBus.on('toggleMenuShow', (e) => {

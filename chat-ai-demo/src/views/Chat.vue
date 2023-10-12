@@ -31,31 +31,32 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import ChatMsg from "./ChatMsg.vue";
-const msgerInput = ref(null);
-const msgerChat = ref(null);
+import { ref } from 'vue';
+import ChatMsg from './ChatMsg.vue';
+const msgerInput = ref(null)
+const msgerChat = ref(null)
+
 
 const BOT_MSGS = [
-  "Hi, how are you?",
+  "Hi, how are you? Ohh... I can't understand what you trying to say. Sorry! Ohh... I can't understand what you trying to say. Sorry! Ohh... I can't understand what you trying to say. Sorry!",
   "Ohh... I can't understand what you trying to say. Sorry!",
   "I like to play games... But I don't know how to play!",
-  "Sorry if my answers are not relevant. :))",
-  "I feel sleepy! :(",
-];
-const chatMsgArray = ref([]);
+  'Sorry if my answers are not relevant. :))',
+  'I feel sleepy! :('
+]
+const chatMsgArray = ref([])
 
-const BOT_NAME = "BOT";
-const PERSON_NAME = "Sajad";
+const BOT_NAME = 'BOT'
+const PERSON_NAME = 'Sajad'
 const submit = (event) => {
-  event.preventDefault();
-  const msgText = msgerInput.value.value;
-  if (!msgText) return;
-  appendMessage(PERSON_NAME, "right", msgText, false);
-  msgerInput.value.value = "";
+  event.preventDefault()
+  const msgText = msgerInput.value.value
+  if (!msgText) return
+  appendMessage(PERSON_NAME, 'right', msgText, false)
+  msgerInput.value.value = ''
 
-  botResponse();
-};
+  botResponse()
+}
 
 function appendMessage(name, side, text, typing) {
   //   Simple solution for small apps
@@ -63,37 +64,37 @@ function appendMessage(name, side, text, typing) {
     name: name,
     alignType: side,
     msg: text,
-    typing: typing,
-  };
+    typing: typing
+  }
 
-  chatMsgArray.value.push(msgData);
-  msgerChat.scrollTop += 500;
+  chatMsgArray.value.push(msgData)
+  msgerChat.scrollTop += 500
 }
 
 function botResponse() {
-  const r = random(0, BOT_MSGS.length - 1);
-  const msgText = BOT_MSGS[r];
-  const delay = msgText.split(" ").length * 100;
+  const r = random(0, BOT_MSGS.length - 1)
+  const msgText = BOT_MSGS[r]
+  const delay = msgText.split(' ').length * 100
 
   setTimeout(() => {
-    appendMessage(BOT_NAME, "left", msgText, true);
-  }, delay);
+    appendMessage(BOT_NAME, 'left', msgText, true)
+  }, delay)
 }
 
 // Utils
 function get(selector, root = document) {
-  return root.querySelector(selector);
+  return root.querySelector(selector)
 }
 
 function formatDate(date) {
-  const h = "0" + date.getHours();
-  const m = "0" + date.getMinutes();
+  const h = '0' + date.getHours()
+  const m = '0' + date.getMinutes()
 
-  return `${h.slice(-2)}:${m.slice(-2)}`;
+  return `${h.slice(-2)}:${m.slice(-2)}`
 }
 
 function random(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min) + min)
 }
 </script>
 

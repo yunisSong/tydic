@@ -1,5 +1,5 @@
 <script setup>
-import ChatVue from "./views/Chat.vue";
+import ChatVue from './views/Chat.vue'
 </script>
 
 <template>

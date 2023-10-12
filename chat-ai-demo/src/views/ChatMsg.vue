@@ -14,8 +14,13 @@
           <div class="msg-info-time">{{ getCurrentTime() }}</div>
         </div>
 
-        <div class="msg-text">
-          {{ msg }}
+        <div class="msg-text" ref="megRef">
+          <template v-if="typing == true">
+            <Typing :msg="msg" />
+          </template>
+          <template v-else>
+            {{ msg }}
+          </template>
         </div>
       </div>
     </div>
@@ -23,21 +28,27 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import getCurrentTime from "../util/data";
+
+import { computed, ref } from 'vue';
+
+import getCurrentTime from '../util/data';
+import Typing from './Typing.vue';
+
 // left right msg letter
 const props = defineProps({
   name: String,
   alignType: String,
   msg: String,
-  typing: Boolean,
-});
+  typing: Boolean
+})
+const megRef = ref(null)
+console.log('megRef: ', megRef)
 const alignTypeClass = computed(() => {
   return {
-    "left-msg": props.alignType == "left",
-    "right-msg": props.alignType == "right",
-  };
-});
+    'left-msg': props.alignType == 'left',
+    'right-msg': props.alignType == 'right'
+  }
+})
 </script>
 
 <style lang="scss" scoped>
