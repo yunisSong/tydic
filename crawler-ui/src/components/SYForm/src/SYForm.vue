@@ -338,7 +338,7 @@ const submitFormPromise = async (next) => {
       valid = false
     })
 
-  next(valid)
+  next && next(valid)
   return valid
 }
 

@@ -24,7 +24,7 @@ const routes = [
         name: 'StatisticsPage',
         component: () =>
           import(
-            /* webpackChunkName: "StatisticsPage" */ '../views/Home/StatisticsPage/statisticsPage.vue'
+            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/StatisticsPage/statisticsPage.vue'
           )
       },
       {
@@ -46,10 +46,26 @@ const routes = [
       {
         path: '/home/crawler',
         name: 'Crawler',
-        component: () =>
-          import(
-            /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Crawler/List.vue'
-          )
+        redirect: '/home/crawler/list',
+        component: () => import('@/views/Home/Crawler/index.vue'),
+        children: [
+          {
+            path: '/home/crawler/list',
+            name: 'CrawlerList',
+            component: () =>
+              import(
+                /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Crawler/List.vue'
+              )
+          },
+          {
+            path: '/home/crawler/crawlerItem',
+            name: 'CrawlerItemInfo',
+            component: () =>
+              import(
+                /* webpackChunkName: "StatisticsPage" */ '@/views/Home/Crawler/Item.vue'
+              )
+          }
+        ]
       },
       {
         path: '/home/crawlerItem',

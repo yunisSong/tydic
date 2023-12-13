@@ -1,0 +1,1 @@
+import{b as t,E as s,i as p}from"./virtual_svg-icons-register-0dfd5477.js";import m from"./StatisticsPage-ed1865c2.js";const o=t(m);for(const[e,n]of Object.entries(s))o.component(e,n);o.use(p);o.mount("#app");

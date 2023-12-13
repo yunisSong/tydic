@@ -26,7 +26,8 @@ export default defineConfig({
       input: {
         // 配置所有页面路径，使得所有页面都会被打包
         main: path.resolve(__dirname, 'index.html'),
-        crawlerHome: path.resolve(__dirname, 'CrawlerHome/index.html')
+        crawlerHome: path.resolve(__dirname, 'CrawlerHome/index.html'),
+        crawlerTask: path.resolve(__dirname, 'CrawlerTaskList/index.html')
       }
     }
   }

@@ -1,6 +1,6 @@
 // 请求
-
 import { ref, watch } from 'vue'
+import { addCrawlTask, startCrawlTask, queryCrawlTask } from '../api/crawler'
 
 const config = () => {
   const tableListModelRef = ref([])
@@ -9,45 +9,12 @@ const config = () => {
     console.log('formModelRef', formModelRef.value)
     console.log('formModelRef', formModelRef.value)
 
-    const data = {
-      resultCode: 1000,
-      resultMsg: '成功',
-      totalCount: 4,
-      data: [
-        {
-          projectName: '微信头像爬取',
-          sonarProjectName: '微信爬虫',
-          status: '已完成',
-          remark:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
-        },
-        {
-          projectName: '微博敏感信息爬取',
-          sonarProjectName: '微博爬虫',
-          status: '爬取中',
-          remark:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
-        },
-        {
-          projectName: 'Twitter 散人留言爬取',
-          sonarProjectName: 'Twitter 爬虫',
-          status: '失败',
-          remark:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
-        },
-        {
-          projectName: 'YouTube 地理杂志留言爬取',
-          sonarProjectName: 'YouTube 爬虫',
-          status: '已完成',
-          remark:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
-        }
-      ]
-    }
-
-    totalCount.value = data.totalCount
-    tableListModelRef.value = data.data.filter((item) => {
-      return item.projectName.indexOf(formModelRef.value.keywords ?? '') != -1
+    queryCrawlTask().then((res) => {
+      const { data } = res
+      totalCount.value = data.totalCount
+      tableListModelRef.value = data.data.filter((item) => {
+        return item.projectName.indexOf(formModelRef.value.keywords ?? '') != -1
+      })
     })
   }
 
@@ -186,3 +153,39 @@ const formDefaultConfig = () => {
 }
 
 export default config
+
+// const data = {
+//   resultCode: 1000,
+//   resultMsg: '成功',
+//   totalCount: 4,
+//   data: [
+//     {
+//       projectName: '微信头像爬取',
+//       sonarProjectName: '微信爬虫',
+//       status: '已完成',
+//       remark:
+//         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
+//     },
+//     {
+//       projectName: '微博敏感信息爬取',
+//       sonarProjectName: '微博爬虫',
+//       status: '爬取中',
+//       remark:
+//         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
+//     },
+//     {
+//       projectName: 'Twitter 散人留言爬取',
+//       sonarProjectName: 'Twitter 爬虫',
+//       status: '失败',
+//       remark:
+//         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
+//     },
+//     {
+//       projectName: 'YouTube 地理杂志留言爬取',
+//       sonarProjectName: 'YouTube 爬虫',
+//       status: '已完成',
+//       remark:
+//         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit error similique nesciunt fuga quidem accusamus ullam maiores quis, eligendi cupiditate quos suscipit veritatis consectetur voluptatem sint repudiandae impedit odio perspiciatis aut distinctio sed facere eius! Eum libero vero dolorem voluptates? Velit, impedit debitis? Veniam perspiciatis blanditiis nisi autem excepturi debitis pariatur, voluptatem odio! Fuga impedit necessitatibus suscipit provident sed aliquam, iure cupiditate eaque, odit veritatis deserunt vero. Perspiciatis, nemo officiis delectus possimus aliquid corrupti tempora maiores veritatis nihil eligendi ipsam quis dolorem reprehenderit voluptas sit vero cum nam expedita est?'
+//     }
+//   ]
+// }

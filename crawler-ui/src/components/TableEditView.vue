@@ -32,7 +32,7 @@
 
 <script setup>
 import { Plus, UploadFilled, Download } from '@element-plus/icons-vue'
-import { defineProps, defineEmits } from 'vue'
+
 const props = defineProps({
   content: '',
   buttons: {

@@ -5,6 +5,8 @@
       v-model="getShow"
       :width="width"
       :before-close="beforClose"
+      v-bind="canClose"
+      :fullscreen="fullscreen"
     >
       <!--       :show-close="false" -->
       <!-- <template #header="{ close, titleId, titleClass }"> -->
@@ -18,8 +20,17 @@
       <slot name="default" class="content" />
 
       <template #footer>
-        <div class="backBtn">
-          <template v-if="onlyBackButton">
+        <div class="backBtn" v-if="!hiddenFooterButtonView">
+          <template v-if="onlyOkButton">
+            <el-button
+              class="bottomLayout"
+              type="primary"
+              @click="handlerSubmit"
+            >
+              {{ okTitle }}
+            </el-button>
+          </template>
+          <template v-else-if="onlyBackButton">
             <el-button class="bottomLayout" type="primary" @click="cancel">
               {{ cancelTitle }}
             </el-button>
@@ -53,6 +64,14 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  hiddenFooterButtonView: {
+    type: Boolean,
+    default: false
+  },
+  onlyOkButton: {
+    type: Boolean,
+    default: false
+  },
   onlyBackButton: {
     type: Boolean,
     default: false
@@ -68,6 +87,14 @@ const props = defineProps({
   cancelTitle: {
     type: String,
     default: '返回'
+  },
+  forcedDisplay: {
+    type: Boolean,
+    default: false
+  },
+  fullscreen: {
+    type: Boolean,
+    default: false
   }
 })
 const emits = defineEmits(['update:isShow', 'beforClose', 'ok', 'cancel'])
@@ -91,6 +118,21 @@ const getShow = computed({
   get: () => props.isShow,
   set: (val) => {
     emits('update:isShow', val)
+  }
+})
+const canClose = computed(() => {
+  if (props.forcedDisplay) {
+    return {
+      'close-on-click-modal': false,
+      'close-on-press-escape': false,
+      'show-close': false
+    }
+  } else {
+    return {
+      'close-on-click-modal': true,
+      'close-on-press-escape': true,
+      'show-close': true
+    }
   }
 })
 </script>

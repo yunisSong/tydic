@@ -1,0 +1,1 @@
+import{b as a,E as p,i as o}from"./virtual_svg-icons-register-0dfd5477.js";import{S as s,a as m,T as r,r as c}from"./TableEditView-8ab2bc22.js";import i from"./List-49649143.js";const e=a(i);for(const[t,n]of Object.entries(p))e.component(t,n);e.component("SYTable",s);e.component("SYForm",m);e.component("TableEditView",r);e.use(o);e.use(o).use(c);e.mount("#app");

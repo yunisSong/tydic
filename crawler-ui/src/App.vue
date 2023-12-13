@@ -9,4 +9,8 @@ const locale = zhCn
   </el-config-provider>
 </template>
 
-<style scoped></style>
+<style scoped>
+.divider {
+  font-size: 16px;
+}
+</style>

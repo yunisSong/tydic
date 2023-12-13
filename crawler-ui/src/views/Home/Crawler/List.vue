@@ -8,13 +8,7 @@
       @buttonClick="queryTableData"
     >
     </SYForm>
-    <TableEditView
-      class="editView"
-      :buttons="buttons"
-      @down="downExcel"
-      @import="toLead"
-      @downTemplate="downGitTemplate"
-    />
+    <TableEditView class="editView" @add="showEditView" />
     <SYTable
       class=""
       :listData="tableListModelRef"
@@ -37,15 +31,28 @@
         <el-link type="primary" class="edit">暂停 </el-link>
       </template>
     </SYTable>
+    <el-dialog
+      v-model="dialogFormVisible"
+      v-if="dialogFormVisible"
+      title="新增权限组"
+    >
+      <template #header>
+        <div class="divider">新增权限组</div>
+      </template>
+      <Edit @add="addCrawler" @cancel="hiddenDialog" />
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import Edit from './Edit.vue'
 
 import config from './Hooks/FormTableConfig.js'
 
 const router = useRouter()
+const dialogFormVisible = ref(false)
 const {
   tableListModelRef,
   formModelRef,
@@ -60,7 +67,22 @@ const {
 queryTableData()
 const showItem = (item) => {
   console.log('item: ', item)
-  router.push('/home/crawlerItem')
+  router.push('/home/crawler/crawlerItem')
+}
+console.log('11111')
+
+const buttons = []
+const showEditView = () => {
+  console.log(2222)
+  dialogFormVisible.value = true
+}
+
+// 新增爬虫
+const addCrawler = (form) => {
+  console.log('form: ', form.task_name)
+}
+const hiddenDialog = () => {
+  dialogFormVisible.value = false
 }
 </script>
 
